@@ -1,0 +1,24 @@
+﻿Open Harmonizer Project Proposal
+
+
+
+Open Harmonizer is a program that will aid in the music making process. It will have 2 primary functions, a live and pre recorded version. The live version will combine a midi controller and a microphone in order to pitch shift the voice to every note. The pre recorded version will combine a midi file and an audio file to pitch shift that sound file to every note in the midi file. All this functionality will be nicely wrapped up in a GUI with recording and saving functionality. We do expect to have all of this done in the allotted time but if we finish early then there are some extra goals to achieve. The dates on the milestones are the day we turn in the progress report. Technologies will include C++ SFML and other libraries. Milestones are subject to change a little with possible difficulties.
+
+
+Milestones/Expected Progress
+* Week 0 (6/13) - Project proposal, organizational tools (GitHub, Coding environments), and basic division of work setup. Example Midi and sound files to test with. Organization within GitHub (File organization + license).
+* Week 1 (6/20) - Having code that talks to microphones, midi controllers and computer keyboards. Starting work on pre recorded midi mapping algorithm.
+* Week 2 (6/27) -  Finishing work on pre recorded midi mapping algorithm. Start work on a live pitch shifting algorithm.
+* Week 3 (7/4) - Summer Break / Minimal Commits / Bug fixes.
+* Week 4 (7/11) - Finishing work on a live pitch shifting algorithm. Starting work on GUI.
+* Week 5 (7/18) - Executable files in windows (.exe). Continue work on GUI.  
+* Week 6 (7/25) - Finishing work on GUI. Recording button.
+* Week 7 (8/1) - Multiple Tracks, metronome, midi recording/saving.
+* Week 8 (8/8) - Attempt dance pad integration. Other functionality. Finishing up any other parts that took extra time. 
+* Week 9 (8/15) - Start working on project presentation. Make a song for presentation. 
+* Week 10 (8/22) - Finals Week. Project Presentation Final Prep.
+
+
+Project Contributors
+Justin Mucelli
+Daniel Qi
