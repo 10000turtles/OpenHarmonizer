@@ -187,13 +187,13 @@ int main()
   float fourthOctaveFrequencies[] = {261.63, 277.18, 293.66, 311.13, 329.63, 349.23, 369.99, 392.00, 415.30, 440.00, 466.16, 493.88};
 
   //before everything
-  float psalm  = fourthOctaveFrequencies[6];
+  float psalm  = fourthOctaveFrequencies[8];
   int   note   = 9;
   int   octave = 0;
 
   for (int i = 0; i < 0; i++)
   {
-    recorder[0].buffer.loadFromFile("psalm.wav");
+    recorder[0].buffer.loadFromFile("crawl.wav");
 
     const sf::Int16* newS = recorder[0].buffer.getSamples();
 
@@ -217,7 +217,6 @@ int main()
     {
       for (int q = 0; q < octave - 4; q++)
       {
-        cout << "I am pitch shifting up" << endl;
         smbPitchShift(2, recorder[0].buffer.getSampleCount(), 1024, 32, 44100, temp, temp);
       }
     }
@@ -230,7 +229,7 @@ int main()
       bruh[j] = temp[j] * 50;
     }
 
-    string filename = "psalm/psalm" + to_string(i) + ".ogg";
+    string filename = "crawl/crawl" + to_string(i) + ".ogg";
     recorder[0].buffer.loadFromSamples(bruh, recorder[0].buffer.getSampleCount(), 2, 44100);
     recorder[0].buffer.saveToFile(filename);
 
