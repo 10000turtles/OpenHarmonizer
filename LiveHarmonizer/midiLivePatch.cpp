@@ -1,4 +1,4 @@
-// Compiled with: g++ -Wall -D__LINUX_ALSA__ -o out liveHarmonizer.cpp RtMidi.cpp -lasound -lpthread -lsfml-audio -lsfml-system
+// Compiled with: g++ -Wall -D__LINUX_ALSA__ -o out midiLivePatch.cpp RtMidi.cpp -lasound -lpthread -lsfml-audio -lsfml-system
 
 #include "RtMidi.h"
 #include "smbPitchShift.cpp"
@@ -172,89 +172,34 @@ int main()
     cerr << "It ain't working rn sorry bruv." << endl;
   }
 
-  int voices = 88;
-  int notes  = 88;
+  string filename;
+  cout << "Enter the note you want to play (\"note\" if the file is note.wav): " << endl;
+  cin >> filename;
 
-  sf::SoundBuffer buffers[notes];
+  int keys = 88;
 
-  LiveHarmonizer recorder[voices];
+  sf::SoundBuffer buffers[keys];
 
+  LiveHarmonizer recorder[keys];
 
   std::vector<unsigned char> message;
-  int                        nBytes, i;
-  double                     stamp;
-  //                                 C       C#/Db   D       D#/Eb   E       F       F#/Gb   G       G#/Ab   A       A#/Bb   B
-  float fourthOctaveFrequencies[] = {261.63, 277.18, 293.66, 311.13, 329.63, 349.23, 369.99, 392.00, 415.30, 440.00, 466.16, 493.88};
 
-  //before everything
-  float psalm  = fourthOctaveFrequencies[8];
-  int   note   = 9;
-  int   octave = 0;
+  int    nBytes;
+  double stamp;
+  bool pedal = false;
 
-  for (int i = 0; i < 0; i++)
-  {
-    recorder[0].buffer.loadFromFile("crawl.wav");
-
-    const sf::Int16* newS = recorder[0].buffer.getSamples();
-
-    float     temp[recorder[0].buffer.getSampleCount()];
-    sf::Int16 bruh[recorder[0].buffer.getSampleCount()];
-
-    for (int j = 0; j < recorder[0].buffer.getSampleCount(); j++)
-    {
-      temp[j] = (float)newS[j] / 50;
-    }
-
-    if (4 - octave > 0)
-    {
-      for (int q = 0; q < 4 - octave; q++)
-      {
-        smbPitchShift(0.5, recorder[0].buffer.getSampleCount(), 1024, 32, 44100, temp, temp);
-      }
-    }
-
-    else if (4 - octave < 0)
-    {
-      for (int q = 0; q < octave - 4; q++)
-      {
-        smbPitchShift(2, recorder[0].buffer.getSampleCount(), 1024, 32, 44100, temp, temp);
-      }
-    }
-
-    cout << recorder[0].buffer.getSampleCount() << " " << fourthOctaveFrequencies[note] / psalm << endl;
-    smbPitchShift(fourthOctaveFrequencies[note] / psalm, recorder[0].buffer.getSampleCount(), 1024, 32, 44100, temp, temp);
-
-    for (int j = 0; j < recorder[0].buffer.getSampleCount(); j++)
-    {
-      bruh[j] = temp[j] * 50;
-    }
-
-    string filename = "crawl/crawl" + to_string(i) + ".ogg";
-    recorder[0].buffer.loadFromSamples(bruh, recorder[0].buffer.getSampleCount(), 2, 44100);
-    recorder[0].buffer.saveToFile(filename);
-
-    note++;
-    if (note == 12)
-    {
-      octave++;
-      note = 0;
-    }
-  }
-
-
-  for (int i = 0; i < voices; i++)
+  for (int i = 0; i < keys; i++)
   {
     recorder[i].start();
   }
 
-  for (int i = 0; i < notes; i++)
+  for (int i = 0; i < keys; i++)
   {
-    buffers[i].loadFromFile("psalm/psalm" + to_string(i) + ".ogg");
+    if (!buffers[i].loadFromFile("soundFiles/" + filename + "/" + filename + to_string(i) + ".ogg"))
+      cerr << "It ain't working rn sorry bruv." << endl;
     recorder[i].stream.load(buffers[i]);
   }
 
-
-  int counter = 0;
   while (true)
   {
     stamp  = recorder[0].midiin->getMessage(&message);
@@ -275,22 +220,32 @@ int main()
         if (recorder[0].notes[message[1] - 21] > 0)
         {
           recorder[message[1] - 21].stream.play();
-
-          // counter++;
-          // if (counter == voices)
-          // {
-          //   counter = 0;
-          // }
         }
+        else if (recorder[0].notes[message[1] - 21] == 0 && !pedal)
+        {
+          recorder[message[1] - 21].stream.stop();
+        }
+
         cout << " ]" << endl;
       }
-      // for (i = 0; i < nBytes; i++)
-      //   cout << "Byte " << i << " = " << (int)message[i] << ", ";
-      // if (nBytes > 0)
-      //   cout << "stamp = " << stamp << endl;
+      if ((int)message[0] == 176)
+      {
+        if(message[2] > 0)
+        {
+          pedal = true;
+        }
+        if(message[2] == 0)
+        {
+          pedal = false;
+        }
+      }
+      for (int i = 0; i < nBytes; i++)
+        cout << "Byte " << i << " = " << (int)message[i] << ", ";
+      if (nBytes > 0)
+        cout << "stamp = " << stamp << endl;
     }
   }
-  for (int i = 0; i < voices; i++)
+  for (int i = 0; i < keys; i++)
   {
     recorder[i].stop();
   }
