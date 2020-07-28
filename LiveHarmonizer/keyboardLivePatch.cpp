@@ -1,4 +1,4 @@
-// Compiled with: g++ -Wall -D__LINUX_ALSA__ -o out keyboardLivePatch.cpp RtMidi.cpp -lasound -lpthread -lsfml-audio -lsfml-system
+// Compiled with: g++ -Wall -D__LINUX_ALSA__ -o keyboardLivePatch.exe keyboardLivePatch.cpp RtMidi.cpp -lasound -lpthread -lsfml-audio -lsfml-system -lsfml-window
 
 #include "RtMidi.h"
 #include "smbPitchShift.cpp"

@@ -1,4 +1,4 @@
-// Compiled with: g++ -Wall -D__LINUX_ALSA__ -o out midiLivePatch.cpp RtMidi.cpp -lasound -lpthread -lsfml-audio -lsfml-system
+// Compiled with: g++ -Wall -D__LINUX_ALSA__ -o midiLivePatch.exe midiLivePatch.cpp RtMidi.cpp -lasound -lpthread -lsfml-audio -lsfml-system
 
 #include "RtMidi.h"
 #include "smbPitchShift.cpp"
@@ -186,7 +186,7 @@ int main()
 
   int    nBytes;
   double stamp;
-  bool pedal = false;
+  bool   pedal = false;
 
   for (int i = 0; i < keys; i++)
   {
@@ -230,11 +230,11 @@ int main()
       }
       if ((int)message[0] == 176)
       {
-        if(message[2] > 0)
+        if (message[2] > 0)
         {
           pedal = true;
         }
-        if(message[2] == 0)
+        if (message[2] == 0)
         {
           pedal = false;
         }

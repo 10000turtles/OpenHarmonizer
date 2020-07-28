@@ -1,5 +1,5 @@
 
-// Compiled with: g++ wavToKeyboard.cpp -lsfml-audio -o out.exe
+// Compiled with: g++ wavToKeyboard.cpp -lsfml-audio -o wavToKeyboard.exe
 
 #include "smbPitchShift.cpp"
 #include "unistd.h"
