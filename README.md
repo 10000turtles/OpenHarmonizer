@@ -33,6 +33,7 @@ After you know those two things, enter the name of the file into the terminal ("
 keyboardLivePatch - This file turns your keyboard into a piano. It requires that you have already run wavToKeyboard for any file you wish to play. After running, enter the name of the file you wish to play and badabing badaboom, you're playing your pitch shifted samples. The keyboard is roughly bigger than one octave:
 
  W E   T Y U   I O
+
 A S D F G H J K L ;
 
 More functionality for this will be added later after more user friendly stuff is made.
