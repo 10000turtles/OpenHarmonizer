@@ -8,6 +8,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <cstdlib>
+#include <fstream>
 #include <iostream>
 #include <signal.h>
 #include <string>
@@ -145,6 +146,25 @@ class LiveHarmonizer : public sf::SoundRecorder
   }
 };
 
+int* load(string filename)
+{
+  // int  values[88];
+  int* values = (int*)malloc(sizeof(int) * 88);
+
+  fstream fin;
+  fin.open("configFiles/" + filename + ".csv", ios::in);
+
+  int temp;
+
+  for (int i = 0; i < 88; i++)
+  {
+    fin >> temp;
+    values[i] = temp;
+    cout << values[i] << " ";
+  }
+
+  return values;
+}
 
 int main()
 {
@@ -157,8 +177,8 @@ int main()
   cout << "Enter the note you want to play (\"note\" if the file is note.wav): " << endl;
   cin >> filename;
 
-  int keys      = 17;
-  int keyOffset = 39;
+  int keys      = 19;
+  int keyOffset = 48;
 
   sf::SoundBuffer buffers[keys];
 
@@ -169,6 +189,69 @@ int main()
   int    nBytes;
   double stamp;
   bool   pedal = false;
+
+
+  map<int, sf::Keyboard::Key> conversion = {
+      {(int)'a', sf::Keyboard::A},
+      {(int)'b', sf::Keyboard::B},
+      {(int)'c', sf::Keyboard::C},
+      {(int)'d', sf::Keyboard::D},
+      {(int)'e', sf::Keyboard::E},
+      {(int)'f', sf::Keyboard::F},
+      {(int)'g', sf::Keyboard::G},
+      {(int)'h', sf::Keyboard::H},
+      {(int)'i', sf::Keyboard::I},
+      {(int)'j', sf::Keyboard::J},
+      {(int)'k', sf::Keyboard::K},
+      {(int)'l', sf::Keyboard::L},
+      {(int)'m', sf::Keyboard::M},
+      {(int)'n', sf::Keyboard::N},
+      {(int)'o', sf::Keyboard::O},
+      {(int)'p', sf::Keyboard::P},
+      {(int)'q', sf::Keyboard::Q},
+      {(int)'r', sf::Keyboard::R},
+      {(int)'s', sf::Keyboard::S},
+      {(int)'t', sf::Keyboard::T},
+      {(int)'u', sf::Keyboard::U},
+      {(int)'v', sf::Keyboard::V},
+      {(int)'w', sf::Keyboard::W},
+      {(int)'x', sf::Keyboard::X},
+      {(int)'y', sf::Keyboard::Y},
+      {(int)'z', sf::Keyboard::Z},
+      {(int)'1', sf::Keyboard::Num1},
+      {(int)'2', sf::Keyboard::Num2},
+      {(int)'3', sf::Keyboard::Num3},
+      {(int)'4', sf::Keyboard::Num4},
+      {(int)'5', sf::Keyboard::Num5},
+      {(int)'6', sf::Keyboard::Num6},
+      {(int)'7', sf::Keyboard::Num7},
+      {(int)'8', sf::Keyboard::Num8},
+      {(int)'9', sf::Keyboard::Num9},
+      {(int)'0', sf::Keyboard::Num0},
+      {(int)'[', sf::Keyboard::LBracket},
+      {(int)']', sf::Keyboard::RBracket},
+      {(int)'-', sf::Keyboard::Dash},
+      {(int)'=', sf::Keyboard::Equal},
+      {(int)'\\', sf::Keyboard::Slash},
+      {(int)';', sf::Keyboard::SemiColon},
+      {(int)'\'', sf::Keyboard::Quote},
+      {(int)',', sf::Keyboard::Comma},
+      {(int)'.', sf::Keyboard::Period},
+      {(int)'/', sf::Keyboard::BackSlash},
+      {(int)'`', sf::Keyboard::Tilde}};
+  cout << "Enter the filename of the config file (no csv extention): ";
+  string filename2;
+  cin >> filename2;
+
+  int*              values = load(filename2);
+  sf::Keyboard::Key keyCodes[keys];
+
+  for (int i = 0; i < keys; i++)
+  {
+    cout << i + keyOffset << endl;
+    cout << values[i + keyOffset] << endl;
+    keyCodes[i] = conversion.at(values[i + keyOffset]);
+  }
 
   for (int i = 0; i < keys; i++)
   {
@@ -187,8 +270,7 @@ int main()
   {
     pressedKeys[i] = false;
   }
-
-  sf::Keyboard::Key keyCodes[] = {sf::Keyboard::A, sf::Keyboard::W, sf::Keyboard::S, sf::Keyboard::E, sf::Keyboard::D, sf::Keyboard::F, sf::Keyboard::T, sf::Keyboard::G, sf::Keyboard::Y, sf::Keyboard::H, sf::Keyboard::U, sf::Keyboard::J, sf::Keyboard::K, sf::Keyboard::O, sf::Keyboard::L, sf::Keyboard::P, sf::Keyboard::SemiColon};
+  //sf::Keyboard::Key keyCodes[] = {sf::Keyboard::A, sf::Keyboard::W, sf::Keyboard::S, sf::Keyboard::E, sf::Keyboard::D, sf::Keyboard::F, sf::Keyboard::T, sf::Keyboard::G, sf::Keyboard::Y, sf::Keyboard::H, sf::Keyboard::U, sf::Keyboard::J, sf::Keyboard::K, sf::Keyboard::O, sf::Keyboard::L, sf::Keyboard::P, sf::Keyboard::SemiColon};
 
   while (true)
   {

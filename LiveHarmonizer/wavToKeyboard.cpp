@@ -73,8 +73,7 @@ int main()
       timp[j] = temp[j + frontSampleCut] * 32000;
     }
 
-
-    buffer.loadFromSamples(timp, buffer.getSampleCount() - frontSampleCut, 2, 44100);
+    buffer.loadFromSamples(timp, buffer.getSampleCount() - frontSampleCut, 1, 44100);
     buffer.saveToFile("soundFiles/" + filename + "/" + filename + to_string(i) + ".ogg");
 
     note++;

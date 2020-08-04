@@ -198,6 +198,7 @@ int main()
     if (!buffers[i].loadFromFile("soundFiles/" + filename + "/" + filename + to_string(i) + ".ogg"))
       cerr << "It ain't working rn sorry bruv." << endl;
     recorder[i].stream.load(buffers[i]);
+    recorder[i].stream.setRelativeToListener(true);
   }
 
   while (true)
@@ -228,6 +229,7 @@ int main()
 
         cout << " ]" << endl;
       }
+
       if ((int)message[0] == 176)
       {
         if (message[2] > 0)
@@ -237,6 +239,14 @@ int main()
         if (message[2] == 0)
         {
           pedal = false;
+        }
+      }
+
+      if ((int)message[0] == 224)
+      {
+        for (int i = 0; i < 88; i++)
+        {
+          recorder[i].stream.setPosition((float)(message[2] - 64) * 0.1, 0.f, -0.1f);
         }
       }
       for (int i = 0; i < nBytes; i++)
