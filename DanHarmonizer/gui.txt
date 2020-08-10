@@ -1,0 +1,149 @@
+Renderer.1 {
+    backgroundcolor = transparent;
+    bordercolor = #3C3C3C;
+    borders = (0, 0, 0, 0);
+    textcolor = #3C3C3C;
+    texturebackground = None;
+}
+
+Slider.Slider1 {
+    ChangeValueOnScroll = true;
+    InvertedDirection = false;
+    Maximum = 10;
+    Minimum = 0;
+    Position = (50, 330);
+    Size = (270, 21.6);
+    Step = 1;
+    Value = 0;
+
+    Renderer {
+        bordercolor = #3C3C3C;
+        bordercolorhover = black;
+        borders = (1, 1, 1, 1);
+        texturethumb = None;
+        texturethumbhover = None;
+        texturetrack = None;
+        texturetrackhover = None;
+        thumbcolor = #F5F5F5;
+        thumbcolorhover = white;
+        trackcolor = #F5F5F5;
+        trackcolorhover = white;
+    }
+}
+
+Label {
+    Position = (140, 290);
+    ScrollbarPolicy = Never;
+    Size = (87.2, 23.3571);
+    Text = Volume;
+    TextSize = 18;
+    renderer = &1;
+}
+
+Label.label {
+    Position = (140, 20);
+    ScrollbarPolicy = Never;
+    Size = (467.2, 74.6447);
+    Text = "Open Harmonizer";
+    TextSize = 50;
+    renderer = &1;
+}
+
+Button.Button1 {
+    Position = (310, 140);
+    Size = (149, 36.8315);
+    Text = "Load Audio";
+    TextSize = 16;
+
+    Renderer {
+        backgroundcolor = #F5F5F5;
+        backgroundcolordisabled = #E6E6E6;
+        backgroundcolordown = #EBEBEB;
+        backgroundcolorhover = white;
+        bordercolor = #3C3C3C;
+        bordercolordisabled = #7D7D7D;
+        bordercolordown = black;
+        bordercolorfocused = #1E1EB4;
+        bordercolorhover = black;
+        borders = (1, 1, 1, 1);
+        textcolor = #3C3C3C;
+        textcolordisabled = #7D7D7D;
+        textcolordown = black;
+        textcolorhover = black;
+        texture = None;
+        texturedisabled = None;
+        texturedown = None;
+        texturefocused = None;
+        texturehover = None;
+    }
+}
+
+Label.Label1 {
+    Position = (580, 290);
+    ScrollbarPolicy = Never;
+    Size = (87.2, 23.3571);
+    Text = Pitch;
+    TextSize = 18;
+
+    Renderer {
+        backgroundcolor = transparent;
+        bordercolor = #3C3C3C;
+        borders = (0, 0, 0, 0);
+        textcolor = #3C3C3C;
+        texturebackground = None;
+    }
+}
+
+Slider.Slider2 {
+    ChangeValueOnScroll = true;
+    InvertedDirection = false;
+    Maximum = 10;
+    Minimum = 0;
+    Position = (470, 330);
+    Size = (270, 21.6);
+    Step = 1;
+    Value = 0;
+
+    Renderer {
+        bordercolor = #3C3C3C;
+        bordercolorhover = black;
+        borders = (1, 1, 1, 1);
+        texturethumb = None;
+        texturethumbhover = None;
+        texturetrack = None;
+        texturetrackhover = None;
+        thumbcolor = #F5F5F5;
+        thumbcolorhover = white;
+        trackcolor = #F5F5F5;
+        trackcolorhover = white;
+    }
+}
+
+Button.Button2 {
+    Position = (310, 210);
+    Size = (149, 36.8315);
+    Text = "Play Audio";
+    TextSize = 16;
+
+    Renderer {
+        backgroundcolor = #F5F5F5;
+        backgroundcolordisabled = #E6E6E6;
+        backgroundcolordown = #EBEBEB;
+        backgroundcolorhover = white;
+        bordercolor = #3C3C3C;
+        bordercolordisabled = #7D7D7D;
+        bordercolordown = black;
+        bordercolorfocused = #1E1EB4;
+        bordercolorhover = black;
+        borders = (1, 1, 1, 1);
+        textcolor = #3C3C3C;
+        textcolordisabled = #7D7D7D;
+        textcolordown = black;
+        textcolorhover = black;
+        texture = None;
+        texturedisabled = None;
+        texturedown = None;
+        texturefocused = None;
+        texturehover = None;
+    }
+}
