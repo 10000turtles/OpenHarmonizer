@@ -1,0 +1,11 @@
+SFML GUI:
+
+Use separate views for the "scene"/"level" and a UI overlay
+Allows you to let the scene lock aspect ratio and scale UI
+
+Creating a “clickable region” is the same as testing if a region’s been clicked.
+  Can be made with a series of rectangular regions
+  can just use sf::Rect and contains method: applies to both clicking and touch
+
+Need to create visual feedback with something to be "clicked"
+examples to use are sf::RectangleShape or sf::Sprite
